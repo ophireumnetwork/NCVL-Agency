@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        function isExtensionError(msg, src) {
+          var m = (String(msg || '')).toLowerCase();
+          var s = (String(src || '')).toLowerCase();
+          return (
+            m.indexOf('metamask') !== -1 ||
+            s.indexOf('metamask') !== -1 ||
+            m.indexOf('chrome-extension://') !== -1 ||
+            s.indexOf('chrome-extension://') !== -1 ||
+            m.indexOf('moz-extension://') !== -1 ||
+            s.indexOf('moz-extension://') !== -1
+          );
+        }
+
+        window.addEventListener('unhandledrejection', function(event) {
+          var reason = event ? (event.reason || event) : null;
+          var msg = typeof reason === 'string' ? reason : (reason && (reason.message || reason.stack)) || '';
+          var stack = (reason && reason.stack) || '';
+          if (isExtensionError(msg, stack)) {
+            event.preventDefault();
+            if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+            return false;
+          }
+        }, true);
+
+        window.addEventListener('error', function(event) {
+          var msg = event ? (event.message || (event.error && (event.error.message || event.error.stack))) : '';
+          var src = event ? (event.filename || (event.error && event.error.stack) || '') : '';
+          if (isExtensionError(msg, src)) {
+            event.preventDefault();
+            if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+            return false;
+          }
+        }, true);
+      })();
+    </script>
+    <title>NCVL Security Agency | Professional Security & Protective Services</title>
+    <meta name="description" content="Premier Philippine corporate security agency and security equipment provider. Uniformed protection, 24/7 patrol operations, CCTV surveillance systems, and specialized security equipment." />
+    <meta property="og:title" content="NCVL Security Agency | Professional Security & Protective Services" />
+    <meta property="og:description" content="Premier Philippine corporate security agency and security equipment provider. Uniformed protection, 24/7 patrol operations, CCTV surveillance systems, and specialized security equipment." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/logo.jpg" />
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#050505] text-white antialiased selection:bg-[#f59e0b] selection:text-black">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

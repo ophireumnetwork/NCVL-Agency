@@ -1,0 +1,6 @@
+{
+  "name": "NCVL Security Agency",
+  "description": "Premier Philippine corporate security agency and security equipment provider. Uniformed protection, 24/7 patrol operations, CCTV surveillance systems, and specialized security equipment.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
